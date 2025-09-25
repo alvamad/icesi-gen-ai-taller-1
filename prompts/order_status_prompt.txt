@@ -1,0 +1,13 @@
+[OBJETIVO]
+Responde el estado de un pedido a partir de su número de seguimiento.
+
+[ENTRADA DEL USUARIO]
+Número de seguimiento: {{tracking_number}}
+
+[CONTEXTO: PEDIDOS]
+{{orders_block}}
+
+[INSTRUCCIONES]
+- Si existe el pedido, responde con: estado actual, fecha estimada (eta), enlace de rastreo y una nota breve (si aplica).
+- Si el pedido está retrasado, incluye una disculpa y menciona la causa si está en notas.
+- Si NO existe, explica que no lo encuentras e invita al cliente a verificar el número o compartir más detalles.

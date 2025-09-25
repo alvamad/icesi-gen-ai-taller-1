@@ -55,15 +55,12 @@ SYSTEM_PROMPT = read_file("prompts/system_agent.txt")
 ORDER_PROMPT  = read_file("prompts/order_status_prompt.txt")
 RETURN_PROMPT = read_file("prompts/returns_prompt.txt")
 
-def ask_openai(messages, temperature=0.4, num_predict=300):
-    """
-    Mantiene la firma de la función original. Internamente mapea num_predict -> max_tokens.
-    """
+def ask_openai(messages, temperature=0.4, max_tokens=300):
     resp = client.chat.completions.create(
         model=OPENAI_MODEL,
         messages=messages,
         temperature=temperature,
-        max_tokens=num_predict, 
+        max_tokens=max_tokens, 
     )
     return resp.choices[0].message.content
 

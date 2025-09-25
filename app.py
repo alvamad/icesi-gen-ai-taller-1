@@ -6,7 +6,7 @@ from datetime import datetime
 from openai import OpenAI
 
 # --- Config OpenAI ---
-OPENAI_MODEL = "gpt-4o-mini"  # puedes usar "gpt-4o" si lo tienes habilitado
+OPENAI_MODEL = "gpt-4o-mini"
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 # --- Cargar pedidos del CSV en memoria ---
@@ -63,7 +63,7 @@ def ask_openai(messages, temperature=0.4, num_predict=300):
         model=OPENAI_MODEL,
         messages=messages,
         temperature=temperature,
-        max_tokens=num_predict,  # mapeo directo
+        max_tokens=num_predict, 
     )
     return resp.choices[0].message.content
 

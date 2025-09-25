@@ -79,8 +79,10 @@ python app.py
 ```
 
 **Salida esperada (ejemplo):**
-- Un bloque con **“Estado de pedido”** para `EMK-10003`.
-- Un bloque con **“Devoluciones”** para `EMK-10002` y la razón “El producto llegó en mal estado”.
+- Un bloque con **“Estado de pedido”** y el estado del pedido como tal.
+- Un bloque con **“Devoluciones”** y la respuesta de si el producto de la orden se puede devolver o no. 
 
 > Los tracking de prueba usados por `app.py` son **`EMK-10003`** y **`EMK-10002`**.
 > Para probar otros, edita esas líneas en el `if __name__ == "__main__":`.
+
+![alt text](resultado.png)

@@ -1,5 +1,7 @@
 # EcoMarket — Demo de Prompts con OpenAI
 
+**Respuestas Puntos 1 y 2 en [Taller.md](Taller.md)**
+
 Este proyecto ejecuta dos flujos de atención al cliente usando **OpenAI**:
 1) **Estado de pedido** por número de seguimiento.  
 2) **Flujo de devoluciones** con razón del cliente.

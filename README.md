@@ -1,5 +1,9 @@
 # EcoMarket — Demo de Prompts con OpenAI
 
+### Integrantes
+- Jhonatan Estrada
+- Alvaro Acosta
+
 **Respuestas Puntos 1 y 2 en [Taller.md](Taller.md)**
 
 Este proyecto ejecuta dos flujos de atención al cliente usando **OpenAI**:

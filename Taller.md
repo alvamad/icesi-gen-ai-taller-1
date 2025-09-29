@@ -1,124 +1,33 @@
-# 1. Selección y Justificación del Modelo de IA
+## 1. Selección y Justificación del Modelo de IA  
 
-La opción más adecuada para **EcoMarket** es una solución **híbrida**,
-en la que la automatización mediante un **LLM con RAG** (por ejemplo,
-GPT-4) atienda el **80% de las consultas repetitivas** (estado del
-pedido, devoluciones, características del producto), reduciendo tiempos
-de espera y liberando carga operativa, mientras que el **20% de los
-casos más complejos** se aborde con un esquema de *human in the loop*,
-garantizando empatía, flexibilidad y un trato personalizado.
+La opción más adecuada para EcoMarket es una **solución híbrida**, en la que la automatización mediante un **LLM grande más económico (por ejemplo, GPT-3.5 o GPT-4 mini) con RAG** atienda el **80% de las consultas repetitivas** (estado del pedido, devoluciones, características del producto), reduciendo tiempos de espera y liberando carga operativa, mientras que el **20% de los casos más complejos** se aborde con un **LLM grande más robusto (por ejemplo, GPT-4)** dentro de un esquema de *human in the loop*, garantizando empatía, flexibilidad y un trato personalizado.  
 
-Para habilitar esta diferenciación, en la arquitectura propuesta se
-incorpora un **módulo de "Clasificación de intenciones / Orquestador"**,
-que recibe la entrada de las consultas (chat, email o redes sociales) y
-determina automáticamente si son repetitivas o complejas.
+Para habilitar esta diferenciación, en la **arquitectura propuesta** se incorpora un módulo de **“Clasificación de intenciones / Orquestador”**, que recibe la entrada de las consultas (chat, email o redes sociales) y determina automáticamente si son repetitivas o complejas. Este proceso se realiza en varias etapas: primero, el sistema analiza la consulta con un preprocesamiento inicial que extrae palabras clave relevantes (como “pedido”, “devolución” o “SKU”) y detecta datos estructurados, como identificadores de pedidos. Luego, un clasificador de intenciones entrenado con ejemplos históricos de EcoMarket asigna una probabilidad a cada tipo de consulta, diferenciando las de carácter transaccional repetitivo (ejemplo: estado de pedido, devoluciones) de aquellas más abiertas y complejas (ejemplo: quejas, sugerencias, problemas técnicos). Además, se aplican umbrales de confianza para decidir la ruta adecuada y reglas heurísticas que refuerzan la clasificación, como identificar expresiones negativas o términos sensibles que obligan a tratar el caso como complejo. Finalmente, el sistema se enriquece con retroalimentación continua, ya que los errores de clasificación y los casos corregidos manualmente por agentes humanos sirven como nuevos ejemplos de entrenamiento para mejorar la precisión con el tiempo.  
 
-### Proceso de clasificación
+### Rutas definidas  
+- **Consultas repetitivas (80%)**: resueltas por un **LLM grande más económico (GPT-3.5 o GPT-4 mini) con RAG y conectado a Tools/APIs**, lo que asegura precisión en información transaccional como pedidos y devoluciones.  
+- **Consultas complejas (20%)**: gestionadas por un **LLM grande más robusto (GPT-4) con RAG**, priorizando fluidez y empatía, con la opción de escalar a un agente humano en caso de incertidumbre o riesgo reputacional.  
 
-1.  **Preprocesamiento inicial**: extracción de palabras clave
-    relevantes (ej. "pedido", "devolución", "SKU") y detección de datos
-    estructurados (identificadores de pedidos).
-2.  **Clasificador de intenciones**: entrenado con ejemplos históricos
-    de EcoMarket, asigna probabilidades según el tipo de consulta.
-    -   **Consultas transaccionales repetitivas**: estado de pedido,
-        devoluciones.
-    -   **Consultas abiertas y complejas**: quejas, sugerencias,
-        problemas técnicos.
-3.  **Umbrales de confianza y reglas heurísticas**: refuerzan la
-    clasificación, considerando expresiones negativas o términos
-    sensibles que obligan a tratar el caso como complejo.
-4.  **Retroalimentación continua**: los errores y correcciones manuales
-    por agentes humanos se reutilizan como ejemplos de entrenamiento
-    para mejorar la precisión en el tiempo.
+**Arquitectura del modelo:** el diseño híbrido combina eficiencia y bajo costo en lo transaccional con un modelo económico, y flexibilidad conversacional en lo complejo con un modelo avanzado. El **orquestador** actúa como puente que dirige cada interacción a la solución correspondiente, mientras que la capa de integración a **APIs de EcoMarket** garantiza acceso a información en tiempo real sin riesgo de alucinaciones.  
 
-### Rutas definidas
+**Costo:** esta solución es más eficiente que usar únicamente un LLM robusto, ya que el 80% de los casos se resuelven con un modelo más económico, reservando el modelo avanzado solo para el 20% complejo, optimizando así el gasto en cómputo y licencias.  
 
--   **Consultas repetitivas (80%)** → resueltas por un **LLM pequeño
-    afinado con RAG** y conectado a **Tools/APIs**, asegurando precisión
-    en información transaccional como pedidos y devoluciones.
--   **Consultas complejas (20%)** → gestionadas por un **LLM grande con
-    RAG**, priorizando fluidez y empatía, con la opción de escalar a un
-    agente humano en caso de incertidumbre o riesgo reputacional.
+**Escalabilidad:** el enfoque modular permite crecer en volumen y canales (chat, correo, redes sociales) sin reentrenar desde cero. Basta con actualizar la base de conocimiento de RAG y ajustar la orquestación, lo que facilita la adaptación al crecimiento de EcoMarket.  
 
-### Arquitectura del modelo
+**Facilidad de integración:** al conectarse mediante **Tools/APIs** al catálogo de productos, sistemas de pedidos y envíos, la solución se integra con las plataformas existentes de EcoMarket, reduciendo fricción en la implementación y garantizando que las respuestas estén alineadas con la información oficial de la empresa.  
 
-El diseño híbrido combina: - **Precisión y eficiencia** en lo
-transaccional con un LLM pequeño afinado.
-- **Flexibilidad conversacional** en lo complejo con un LLM grande.
+En conclusión, la **solución híbrida** ofrece un equilibrio óptimo entre **precisión, empatía, costo y escalabilidad**, apoyándose en la clasificación inicial de consultas para aprovechar lo mejor de ambos modelos y asegurar una atención al cliente más rápida, confiable y humana.  
 
-El **orquestador** actúa como puente que dirige cada interacción a la
-solución correspondiente, mientras que la **capa de integración a APIs
-de EcoMarket** garantiza acceso a información en tiempo real sin riesgo
-de alucinaciones.
+## 2. Evaluación de Fortalezas, Limitaciones y Riesgos Éticos  
 
-### Costo
+### **Fortalezas**  
+La solución híbrida de EcoMarket permite una **reducción significativa del tiempo de respuesta**, resolviendo de inmediato el **80% de las consultas repetitivas** mediante un **LLM grande más económico (por ejemplo, GPT-3.5 o GPT-4 mini) con RAG** y conectado a las bases de datos de pedidos, devoluciones y catálogo. También ofrece **disponibilidad 24/7**, asegurando soporte constante en múltiples canales, y aporta **escalabilidad**, ya que puede atender miles de interacciones sin necesidad de ampliar proporcionalmente el equipo humano. Además, mejora la **consistencia en las respuestas**, alineando cada interacción con la información oficial de la empresa y reduciendo variaciones de criterio. Finalmente, libera al personal de tareas rutinarias, permitiendo que los agentes se concentren en el **20% de los casos complejos**, donde la empatía y el juicio humano aportan mayor valor.  
 
-Más eficiente que usar únicamente un LLM grande, ya que el **80% de los
-casos se resuelven con un modelo ligero y económico**, reservando el
-modelo avanzado solo para el 20% complejo, optimizando así el gasto en
-cómputo y licencias.
+### **Limitaciones**  
+La efectividad de la solución depende en gran medida de la **calidad de los datos**; si la información de pedidos, devoluciones o productos está desactualizada o es errónea, el modelo transmitirá esos errores. Asimismo, incluso los LLM grandes más económicos pueden presentar **limitaciones en conversaciones largas o altamente personalizadas**, perdiendo parte del contexto. Otro desafío es la necesidad de un **mantenimiento constante** de la base de conocimiento (RAG) y las integraciones con APIs para reflejar cambios en políticas, inventario y procesos. El **costo operativo** sigue siendo un factor, especialmente en el 20% de casos donde se recurre a un **LLM robusto como GPT-4**, que tiene mayor consumo de recursos. Finalmente, se requiere gestionar una **curva de adopción interna**, ya que los agentes deben capacitarse para trabajar en conjunto con la IA y comprender cuándo intervenir en el esquema de *human in the loop*.  
 
-### Escalabilidad
-
-El enfoque modular permite crecer en volumen y canales (chat, correo,
-redes sociales) sin reentrenar desde cero. Basta con actualizar la
-**base de conocimiento de RAG** y ajustar la orquestación.
-
-### Facilidad de integración
-
-La conexión mediante **Tools/APIs** al catálogo de productos, sistemas
-de pedidos y envíos permite integrarse con las plataformas existentes de
-EcoMarket, reduciendo fricción y garantizando respuestas alineadas con
-la información oficial.
-
-**Conclusión**: La solución híbrida ofrece un equilibrio óptimo entre
-**precisión, empatía, costo y escalabilidad**, apoyándose en la
-clasificación inicial de consultas para aprovechar lo mejor de ambos
-modelos y asegurar una atención al cliente más rápida, confiable y
-humana.
-
-------------------------------------------------------------------------
-
-# 2. Evaluación de Fortalezas, Limitaciones y Riesgos Éticos
-
-## Fortalezas
-
--   Reducción significativa del tiempo de respuesta (80% de consultas
-    resueltas con LLM pequeño + RAG).
--   Disponibilidad **24/7** en múltiples canales.
--   Escalabilidad: atender miles de interacciones sin ampliar
-    proporcionalmente el equipo humano.
--   **Consistencia** en las respuestas, alineadas con la información
-    oficial.
--   Liberación de tareas rutinarias para que los agentes se concentren
-    en los casos complejos.
-
-## Limitaciones
-
--   Dependencia de la **calidad de los datos** (pedidos, devoluciones,
-    catálogo).
--   Limitaciones en conversaciones largas o muy personalizadas.
--   Necesidad de **mantenimiento constante** de la base de conocimiento
-    (RAG) y de las integraciones con APIs.
--   **Costo operativo** en el 20% de los casos que requieren un LLM
-    grande.
--   Curva de adopción interna: capacitación de agentes para colaborar
-    con la IA y aplicar el esquema de *human in the loop*.
-
-## Riesgos Éticos
-
--   **Alucinaciones** del modelo → mitigadas con controles de confianza
-    y escalado a humano.
--   **Sesgos en el lenguaje**: riesgo de replicar patrones
-    discriminatorios.
--   **Privacidad de datos**: se requiere anonimización y cumplimiento
-    normativo.
--   **Impacto laboral**: preocupación por la automatización; debe
-    comunicarse como apoyo y no reemplazo.
--   **Transparencia con los clientes**: aclarar siempre si interactúan
-    con un bot o con un humano para mantener la confianza.
-
-------------------------------------------------------------------------
+### **Riesgos Éticos**  
+Uno de los riesgos más relevantes son las **alucinaciones del modelo**, que pueden llevar a inventar información en ausencia de contexto. Esto debe mitigarse con controles de confianza, reglas estrictas y escalado a humano en casos inciertos. También está el riesgo de **sesgos en el lenguaje**, ya que el modelo podría replicar patrones discriminatorios presentes en sus datos de entrenamiento y dar respuestas diferenciadas según el perfil del cliente. La **privacidad de los datos** es otro aspecto fundamental: se debe anonimizar información de identificación personal y cumplir con normativas de protección como GDPR o CCPA para garantizar seguridad. Además, existe un **impacto laboral** que no debe ignorarse; la automatización puede generar preocupación en los agentes de soporte, por lo que la estrategia debe enfocarse en **empoderarlos**, reduciendo su carga repetitiva y dándoles espacio para aportar mayor valor en casos complejos. Finalmente, es indispensable garantizar la **transparencia con los clientes**, dejando claro cuándo interactúan con un bot y cuándo con un humano, para mantener la confianza en la marca.  
 
 # 3. Observaciones para el Prompt implementado
 
@@ -140,6 +49,10 @@ Reglas:
 - Responde en español neutro y con tono profesional y cordial."
 
 Contiene todas las reglas que se necesitan para el contexto inicial, órdenes claras y directas para que pueda sacar la información de la base que se le pasa después, incluye forma de responder, tonos, y demás indicaciones.
+
+Los otros dos prompts que usaron para RAG se pueden encontrar en [returns_prompt.txt](prompts/returns_prompt.txt) y [order_status_prompt](prompts/order_status_prompt.txt)
+
+Como se puede observar son prompts que tienen objetivo, contexto, inputs, reglas, y demás contenido que permite al LLM tomar decisiones adecuadas y acertadas para responder con el mayor grado de acercamiento posible a la intención del usuario.
 
 Como ejemplo de interacción tenemos la siguiente captura:
 ![alt text](resultado.png)

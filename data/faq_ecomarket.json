@@ -1,0 +1,62 @@
+[
+    {
+        "pregunta": "¿Cuánto tarda el envío de mi pedido?",
+        "respuesta": "El tiempo de entrega estimado es de 3 a 5 días hábiles en ciudades principales y de 5 a 8 días hábiles en otras regiones. Una vez despachado el pedido, recibirás un correo con el enlace de rastreo.",
+        "categoria": "Envíos",
+        "fecha_actualizacion": "2025-10-11"
+    },
+    {
+        "pregunta": "¿Cómo puedo hacer una devolución?",
+        "respuesta": "Puedes solicitar una devolución ingresando a tu cuenta en EcoMarket.com, en la sección 'Mis pedidos'. Selecciona el producto que deseas devolver y sigue las instrucciones. Recibirás una respuesta de nuestro equipo en un plazo máximo de 48 horas.",
+        "categoria": "Devoluciones",
+        "fecha_actualizacion": "2025-10-11"
+    },
+    {
+        "pregunta": "¿Qué productos no tienen devolución?",
+        "respuesta": "Por motivos de higiene y seguridad, no se aceptan devoluciones de productos de uso personal, alimentos, cosméticos o artículos en oferta.",
+        "categoria": "Devoluciones",
+        "fecha_actualizacion": "2025-10-11"
+    },
+    {
+        "pregunta": "¿EcoMarket ofrece garantía en sus productos?",
+        "respuesta": "Sí. Todos nuestros productos cuentan con garantía mínima de 6 meses por defectos de fabricación o materiales. Algunos productos pueden tener garantía extendida según el fabricante.",
+        "categoria": "Garantías",
+        "fecha_actualizacion": "2025-10-11"
+    },
+    {
+        "pregunta": "¿Cómo puedo rastrear mi pedido?",
+        "respuesta": "Una vez tu pedido haya sido enviado, recibirás un correo electrónico con el número de guía y un enlace para rastrear el envío en tiempo real.",
+        "categoria": "Envíos",
+        "fecha_actualizacion": "2025-10-11"
+    },
+    {
+        "pregunta": "¿Qué métodos de pago aceptan?",
+        "respuesta": "Aceptamos pagos con tarjeta de crédito, débito, PSE, y billeteras digitales como Nequi y Daviplata. Todos los pagos son procesados de forma segura.",
+        "categoria": "Pagos",
+        "fecha_actualizacion": "2025-10-11"
+    },
+    {
+        "pregunta": "¿EcoMarket realiza envíos internacionales?",
+        "respuesta": "Por el momento, los envíos solo están disponibles dentro de Colombia.",
+        "categoria": "Envíos",
+        "fecha_actualizacion": "2025-10-11"
+    },
+    {
+        "pregunta": "¿Cómo contacto al servicio al cliente?",
+        "respuesta": "Puedes escribirnos a soporte@ecomarket.com, usar el chat en línea disponible de lunes a viernes de 9:00 a 18:00 o llamarnos al +57 318 654 9872.",
+        "categoria": "Atención al cliente",
+        "fecha_actualizacion": "2025-10-11"
+    },
+    {
+        "pregunta": "¿EcoMarket tiene programas de fidelización?",
+        "respuesta": "Sí, contamos con el programa EcoPuntos. Por cada compra acumulas puntos que puedes redimir en futuros pedidos o promociones especiales.",
+        "categoria": "Promociones",
+        "fecha_actualizacion": "2025-10-11"
+    },
+    {
+        "pregunta": "¿Los productos de EcoMarket son sostenibles?",
+        "respuesta": "Sí, todos nuestros productos provienen de proveedores que cumplen con criterios de sostenibilidad ambiental y social, priorizando materiales reciclados o biodegradables.",
+        "categoria": "Sostenibilidad",
+        "fecha_actualizacion": "2025-10-11"
+    }
+]
